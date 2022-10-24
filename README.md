@@ -24,3 +24,24 @@
   - foreign key
 - [Relational Algebra](https://github.com/jimin-kiim/DBS/issues/2#issuecomment-1278859558)
   - select, project, cartesian product, join, set operations(union, intersection, set difference), assignment, rename
+
+<br>
+<br>
+
+  - [Introduction to SQL](https://github.com/jimin-kiim/DBS/issues/3#issuecomment-1279624788)
+  - [SQL Data definition](https://github.com/jimin-kiim/DBS/issues/3#issuecomment-1279629771)
+    - built-in basic data types
+    - basic schema definition
+    - updating table 
+  - [Basic Structure of SQL queries](https://github.com/jimin-kiim/DBS/issues/3#issuecomment-1279637988)
+  - [Additional Operations](https://github.com/jimin-kiim/DBS/issues/3#issuecomment-1279638845)
+    - rename operation
+    - string operations
+    - order by
+    - where-between-and
+    - where ; tuple comparison
+  - [Set Operations](https://github.com/jimin-kiim/DBS/issues/3#issuecomment-1279639124)  
+    - union, intersect, except
+  - [Null Values](https://github.com/jimin-kiim/DBS/issues/3#issuecomment-1279639183)
+  - [Aggregate Functions](https://github.com/jimin-kiim/DBS/issues/3#issuecomment-1279639821)
+  - [Nested Subqueries](https://github.com/jimin-kiim/DBS/issues/3#issuecomment-1279642022)
