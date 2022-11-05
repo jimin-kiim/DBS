@@ -1,6 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,7 +15,7 @@ public static void main(String[] args) {
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-//	PreparedStatement pstmt = null;
+	PreparedStatement pstmt = null;
 	try {
 		conn = DriverManager.getConnection(DB_URL,USER,PASS);
 		stmt = conn.createStatement();
@@ -25,21 +25,30 @@ public static void main(String[] args) {
 			System.out.println("Menu"+ menuNum + " name = "+ rs.getString("name"));
 			menuNum++;
 		}
-//		String sql = "insert into student values(?,?,?,?)";
-//		pstmt = conn.prepareStatement(sql);
-//		pstmt.setString(1,"20150008");
-//		pstmt.setString(2, "Cho");
-//		pstmt.setInt(3, 15);
-//		pstmt.setString(4, "CSE");
-//		pstmt.executeUpdate();
+		System.out.println("====================================");
+		String sql = "insert into menu values(?,?,?,?,?,?)";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1,"20220006");
+		pstmt.setString(2, "얼큰국밥");
+		pstmt.setString(3, "더진국");
+		pstmt.setInt(4, 9000);
+		pstmt.setString(5, "얼큰한 맛의 순대, 수육 국밥");
+		pstmt.setString(6, "https://thejincook.com/upload/menu_01/2019_05_10/hero_SRGKA_2019_05_10_16_06_36.jpg");
+		pstmt.executeUpdate();
 		
+		rs = stmt.executeQuery(QUERY);
+		menuNum = 1;
+		while(rs.next()) {
+			System.out.println("Menu"+ menuNum + " name = "+ rs.getString("name"));
+			menuNum++;
+		}
 	}catch(SQLException e) {
 		System.out.println("SQLException : "+e);
 	}finally {
 		try {
 			rs.close();
 			stmt.close();
-//			pstmt.close();
+			pstmt.close();
 			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
