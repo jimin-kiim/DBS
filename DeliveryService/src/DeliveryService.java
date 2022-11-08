@@ -22,24 +22,41 @@ public static void main(String[] args) {
 		rs = stmt.executeQuery(QUERY);
 		int menuNum = 1;
 		while(rs.next()) {
-			System.out.println("Menu"+ menuNum + " name = "+ rs.getString("name"));
+			System.out.println("Menu"+ menuNum + 
+					" id: " + rs.getInt("id") + 
+					" name: "+ rs.getString("name") + 
+					" restaurant: " + rs.getString("restaurant") +
+					" price: " + rs.getInt("price") +
+					" description: " + rs.getString("description") +
+					" image_url: " + rs.getString("image_url")
+		);
 			menuNum++;
 		}
+		
+		rs.close();
+		
 		System.out.println("====================================");
 		String sql = "insert into menu values(?,?,?,?,?,?)";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,"20220006");
-		pstmt.setString(2, "얼큰국밥");
-		pstmt.setString(3, "더진국");
-		pstmt.setInt(4, 9000);
-		pstmt.setString(5, "얼큰한 맛의 순대, 수육 국밥");
-		pstmt.setString(6, "https://thejincook.com/upload/menu_01/2019_05_10/hero_SRGKA_2019_05_10_16_06_36.jpg");
+		pstmt.setInt(1,20220003);
+		pstmt.setString(2, "basic custom");
+		pstmt.setString(3, "custom yogurt");
+		pstmt.setInt(4, 5900);
+		pstmt.setString(5, "cinnamon powder, apple, granola, dried fig, banana");
+		pstmt.setString(6, "https://mblogthumb-phinf.pstatic.net/MjAyMTEyMzFfMTMx/MDAxNjQwOTIOOTkMj01.ezziNFgjaYyRLqyTrg10F3LTU-kTZyDbaUXyu6Xopjcg.hxZTv6q561qq5anXDYk6_1ypeV7dkH7cHpU8V49]]v8g.PNG.customyogurt77/image.png?type=w800");
 		pstmt.executeUpdate();
 		
 		rs = stmt.executeQuery(QUERY);
 		menuNum = 1;
 		while(rs.next()) {
-			System.out.println("Menu"+ menuNum + " name = "+ rs.getString("name"));
+			System.out.println("Menu"+ menuNum + 
+					" id: " + rs.getInt("id") + 
+					" name: "+ rs.getString("name") + 
+					" restaurant: " + rs.getString("restaurant") +
+					" price: " + rs.getInt("price") +
+					" description: " + rs.getString("description") +
+					" image_url: " + rs.getString("image_url")
+		);
 			menuNum++;
 		}
 	}catch(SQLException e) {
