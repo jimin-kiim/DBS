@@ -88,6 +88,47 @@ public void searchRestaurants(){
 
 public void searchReviews(){
 	System.out.println("searchReviews");
-	
+	Connection conn = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	PreparedStatement pstmt = null;
+	try {
+		conn = DriverManager.getConnection(DB_URL,USER,PASS);
+		stmt = conn.createStatement();
+		
+		System.out.println("====================================");
+		String sql = "select * "
+				+ "from review "
+				+ "where writer_id in "
+					+ "(select id "
+					+ "from customer "
+					+ "where name = ?)";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, "고객1");
+		rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			System.out.println(
+//					"이름: "+ rs.getString("name") + 
+					" 작성시간: " + rs.getString("created_at") +
+					" 별점: " + rs.getInt("rating") +
+					" 내용: " + rs.getString("contents") +
+					" 첨부 사진: " + rs.getString("image_url")
+		);
+		}
+	}catch(SQLException e) {
+		System.out.println("SQLException : "+e);
+	}finally {
+		try {
+			rs.close();
+			stmt.close();
+			pstmt.close();
+			
+			conn.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
 }
