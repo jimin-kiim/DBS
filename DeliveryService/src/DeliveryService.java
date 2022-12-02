@@ -11,8 +11,6 @@ static final String DB_URL = "jdbc:mysql://localhost/DeliveryService?useUnicode=
 static final String USER = "root"; 
 static final String PASS = "wlalsdlqslek!"; 
 
-static final String QUERY_2 = "select * from menu";
-
 public void execute() {
 	boolean flag = true;
 	Scanner sc = new Scanner(System.in);
@@ -54,17 +52,15 @@ public void searchRestaurants(){
 		stmt = conn.createStatement();
 		
 		System.out.println("====================================");
-//		String sql = "select * "
-//				+ "from restaurant "
-//				+ "where is_one_person_set_available in "
-//				+ "(select is_one_person_set_available "
-//				+ "from restaurant "
-//				+ "where category = '?";
-		String sql = "select * from restaurant";
-//		pstmt = conn.prepareStatement(sql);
-//		pstmt.setInt(1,0);
-//		pstmt.executeUpdate();
-		rs = stmt.executeQuery(sql);
+		String sql = "select * "
+				+ "from restaurant "
+				+ "where is_one_person_set_available in "
+					+ "(select is_one_person_set_available "
+					+ "from restaurant "
+					+ "where category = ?)";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, 0);
+		rs = pstmt.executeQuery();
 		
 		while(rs.next()) {
 			System.out.println(
@@ -72,7 +68,7 @@ public void searchRestaurants(){
 					" 위치: " + rs.getString("location") +
 					" 영업 시간 정보: " + rs.getString("opening_hours_info") +
 					" 연락처: " + rs.getString("telephone") +
-					" 최소 주문 금액: " + rs.getInt("min_order_amount") +""
+					" 최소 주문 금액: " + rs.getInt("min_order_amount") +"원"
 		);
 		}
 	}catch(SQLException e) {
@@ -81,7 +77,8 @@ public void searchRestaurants(){
 		try {
 			rs.close();
 			stmt.close();
-//			pstmt.close();
+			pstmt.close();
+			
 			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
