@@ -18,8 +18,8 @@ public void execute() {
 	while(flag) {
 		System.out.println("수행할 기능을 선택해주세요. ");
 		System.out.println("");
-		System.out.println("1. 1인 메뉴 주문 가능한 음식점 검색 ");
-		System.out.println("2. 작성한 리뷰 검색 ");
+		System.out.println("1. 1인 메뉴 주문이 가능한 음식점 검색하기");
+		System.out.println("2. 특정 고객이 작성한 리뷰 검색하기 ");
 		System.out.println("3. 종료 ");
 		System.out.println(">>");
 		
@@ -52,6 +52,7 @@ public void searchRestaurants(){
 	PreparedStatement pstmt = null;
 	try {
 		System.out.println("");
+		System.out.println("1. 1인 메뉴 주문 가능한 음식점 검색 기능입니다.");
 		System.out.println("음식점 분류를 선택해주세요. ");
 		System.out.println("");
 		System.out.println("0. 한식 ");
@@ -105,7 +106,8 @@ public void searchReviews(){
 	PreparedStatement pstmt = null;
 	try {
 		System.out.println("");
-		System.out.println("작성자 고객의 이름을 입력해주세요. >>");
+		System.out.println("2. 작성한 리뷰를 검색하는 기능입니다. ");
+		System.out.println("작성자(고객)의 이름을 입력해주세요. >>");
 		String user_input = sc.nextLine(); 
 	    sc.nextLine(); 
 	    
@@ -118,7 +120,8 @@ public void searchReviews(){
 				+ "where writer_id in "
 					+ "(select id "
 					+ "from customer "
-					+ "where name = ?)";
+					+ "where name = ?)"
+					+ "order by created_at desc";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, user_input);
