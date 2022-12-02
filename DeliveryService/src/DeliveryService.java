@@ -1,16 +1,17 @@
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class DeliveryService {
 static final String DB_URL = "jdbc:mysql://localhost/DeliveryService?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone= UTC";
 static final String USER = "root"; 
 static final String PASS = "wlalsdlqslek!"; 
-static final String QUERY = "select * from menu";
+
+static final String QUERY_2 = "select * from menu";
 
 public void execute() {
 	boolean flag = true;
@@ -44,101 +45,48 @@ public void execute() {
 
 public void searchRestaurants(){
 	System.out.println("searchRestaurants.");
-//	 while () {
-//			String line = input.nextLine();
-//			
-//			if (line.matches("//.*")||line.isEmpty()){
-//				continue;
-//			}
-//			
-//			String[] strings = line.split("[;,]",5);
-//			//";|,"도 되고 "[;,]"도 된다. 
-//
-//			try {
-//				String str = strings[1].trim();
-//				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
-//				LocalDateTime.parse(str, formatter);
-//			}catch(Exception e){
-//				System.out.println("Date Format Error -> No Created Time invalid Bookmark info line: "
-//			+strings[0]+","+strings[1]+","+strings[2]+","+strings[3]+","+strings[4]);
-//				break;
-//			}
-//			
-//			String url=strings[2].trim();
-//			if (url.isEmpty()) {
-//				System.out.println("MalformedURLException: wrong URL - No URL ; invalid Bookmark info line: "
-//						+strings[0]+","+strings[1]+","+strings[2]+","+strings[3]+","+strings[4]);
-//				break;
-//			}
-//			
-//			Bookmark bookmark = new Bookmark(url);
-//			bookmark.name=strings[0].trim();
-//			bookmark.groupName=strings[3].trim();
-//			bookmark.memo=strings[4].trim();
-//			this.addBookmarkList(bookmark);
-//		 
-//
-//			
-//			Connection conn = null;
-//			Statement stmt = null;
-//			ResultSet rs = null;
-//			PreparedStatement pstmt = null;
-//			try {
-//				conn = DriverManager.getConnection(DB_URL,USER,PASS);
-//				stmt = conn.createStatement();
-//				rs = stmt.executeQuery(QUERY);
-//				int menuNum = 1;
-//				while(rs.next()) {
-//					System.out.println("Menu"+ menuNum + 
-//							" id: " + rs.getInt("id") + 
-//							" name: "+ rs.getString("name") + 
-//							" restaurant: " + rs.getString("restaurant") +
-//							" price: " + rs.getInt("price") +
-//							" description: " + rs.getString("description") +
-//							" image_url: " + rs.getString("image_url")
-//				);
-//					menuNum++;
-//				}
-//				
-//				rs.close();
-//				
-//				System.out.println("====================================");
-//				String sql = "insert into menu values(?,?,?,?,?,?)";
-//				pstmt = conn.prepareStatement(sql);
-//				pstmt.setInt(1,20220003);
-//				pstmt.setString(2, "basic custom");
-//				pstmt.setString(3, "custom yogurt");
-//				pstmt.setInt(4, 5900);
-//				pstmt.setString(5, "cinnamon powder, apple, granola, dried fig, banana");
-//				pstmt.setString(6, "https://mblogthumb-phinf.pstatic.net/MjAyMTEyMzFfMTMx/MDAxNjQwOTIOOTkMj01.ezziNFgjaYyRLqyTrg10F3LTU-kTZyDbaUXyu6Xopjcg.hxZTv6q561qq5anXDYk6_1ypeV7dkH7cHpU8V49]]v8g.PNG.customyogurt77/image.png?type=w800");
-//				pstmt.executeUpdate();
-//				
-//				rs = stmt.executeQuery(QUERY);
-//				menuNum = 1;
-//				while(rs.next()) {
-//					System.out.println("Menu"+ menuNum + 
-//							" id: " + rs.getInt("id") + 
-//							" name: "+ rs.getString("name") + 
-//							" restaurant: " + rs.getString("restaurant") +
-//							" price: " + rs.getInt("price") +
-//							" description: " + rs.getString("description") +
-//							" image_url: " + rs.getString("image_url")
-//				);
-//					menuNum++;
-//				}
-//			}catch(SQLException e) {
-//				System.out.println("SQLException : "+e);
-//			}finally {
-//				try {
-//					rs.close();
-//					stmt.close();
-//					pstmt.close();
-//					conn.close();
-//				}catch(SQLException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
+	Connection conn = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	PreparedStatement pstmt = null;
+	try {
+		conn = DriverManager.getConnection(DB_URL,USER,PASS);
+		stmt = conn.createStatement();
+		
+		System.out.println("====================================");
+//		String sql = "select * "
+//				+ "from restaurant "
+//				+ "where is_one_person_set_available in "
+//				+ "(select is_one_person_set_available "
+//				+ "from restaurant "
+//				+ "where category = '?";
+		String sql = "select * from restaurant";
+//		pstmt = conn.prepareStatement(sql);
+//		pstmt.setInt(1,0);
+//		pstmt.executeUpdate();
+		rs = stmt.executeQuery(sql);
+		
+		while(rs.next()) {
+			System.out.println(
+					"이름: "+ rs.getString("name") + 
+					" 위치: " + rs.getString("location") +
+					" 영업 시간 정보: " + rs.getString("opening_hours_info") +
+					" 연락처: " + rs.getString("telephone") +
+					" 최소 주문 금액: " + rs.getInt("min_order_amount") +""
+		);
+		}
+	}catch(SQLException e) {
+		System.out.println("SQLException : "+e);
+	}finally {
+		try {
+			rs.close();
+			stmt.close();
+//			pstmt.close();
+			conn.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
 
 public void searchReviews(){
