@@ -1,0 +1,8 @@
+select max(salary) as SecondHighestSalary
+from Employee
+where salary in ((select salary
+        from Employee)
+        except 
+        (select max(salary)
+        from Employee)
+      );
