@@ -1,0 +1,8 @@
+delete 
+from Person
+where id not in (
+  select tmp.id
+  from (select min(id) id 
+        from Person 
+        group by email) as tmp
+  )
