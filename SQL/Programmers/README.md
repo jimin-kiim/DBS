@@ -6,6 +6,8 @@
 
 ### max, min
 - 집계함수(where에서 사용 불가)
+- datetime에도 사용 가능
+    - 가장 늦은 datetime(가장 최근)이 max. 
 
 #### =, like
 - 완전히 동일한 걸 찾을 때: =
