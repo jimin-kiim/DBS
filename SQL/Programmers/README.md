@@ -17,3 +17,7 @@ round(대상, 자리수)
 ### date_format()
 - date_format(대상, 형식)
 - 형식: 예) '%Y'
+
+### ifnull()
+- ifnull(기준, 표기)
+- 예) ifnull(tlno, 'NONE')
