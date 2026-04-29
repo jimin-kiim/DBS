@@ -2,7 +2,8 @@
 
 ### where 
 - and, or
-- is not null
+- is not null, is null
+
 #### =, like
 - 완전히 동일한 걸 찾을 때: =
 - 문자열 패턴 기반 검색: like
