@@ -1,0 +1,4 @@
+SELECT title, u.board_id, reply_id, r.writer_id, r.contents, r.created_date
+from used_goods_board u join used_goods_reply r on u.board_id = r.board_id
+where date_format(u.created_date, '%Y-%m') = '2022-10'
+order by r.created_date asc, title asc
