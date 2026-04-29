@@ -4,6 +4,9 @@
 - and, or
 - is not null, is null
 
+### max, min
+- 집계함수(where에서 사용 불가)
+
 #### =, like
 - 완전히 동일한 걸 찾을 때: =
 - 문자열 패턴 기반 검색: like
