@@ -1,4 +1,7 @@
 
+### join
+- from 테이블 join 테이블 on 기준컬럼 = 기준컬럼 
+
 
 ### round()
 round(대상, 자리수)
