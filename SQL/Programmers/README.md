@@ -5,3 +5,8 @@ round(대상, 자리수)
 - 자리수 생략: 소수 => 정수 
 - 양수자리수: 소수점 이하 반올림
 - 음수자리수: 십의 자리, 백의 자리 .. 반올림
+
+
+### ordery by
+- order by 기준 desc/asc
+- order by 기준1 desc/asc, 기준2 desc/asc
