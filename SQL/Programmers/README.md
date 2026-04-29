@@ -2,6 +2,7 @@
 
 ### where 
 - and, or
+- is not null
 
 ### join
 - from 테이블 join 테이블 on 기준컬럼 = 기준컬럼 
@@ -18,7 +19,7 @@ round(대상, 자리수)
 
 ### date_format()
 - date_format(대상, 형식)
-- 형식: 예) '%Y'
+- 형식: 예) 2024: '%Y', 03: '%m'
 
 ### ifnull()
 - ifnull(기준, 표기)
