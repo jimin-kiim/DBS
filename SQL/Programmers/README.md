@@ -37,3 +37,6 @@ round(대상, 자리수)
 ### ifnull()
 - ifnull(기준, 표기)
 - 예) ifnull(tlno, 'NONE')
+
+### union all
+- s/f/w union all s/f/w order by
