@@ -3,6 +3,11 @@
 ### where 
 - and, or
 - is not null
+#### =, like
+- 완전히 동일한 걸 찾을 때: =
+- 문자열 패턴 기반 검색: like
+  - %
+  - _
 
 ### join
 - from 테이블 join 테이블 on 기준컬럼 = 기준컬럼 
