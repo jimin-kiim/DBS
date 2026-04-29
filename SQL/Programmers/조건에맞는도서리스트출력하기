@@ -1,0 +1,3 @@
+SELECT book_id, published_date 
+from book
+where category = '인문' and date_format(published_date, '%Y') = '2021'

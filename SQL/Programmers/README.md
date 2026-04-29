@@ -13,3 +13,7 @@ round(대상, 자리수)
 ### ordery by
 - order by 기준 desc/asc
 - order by 기준1 desc/asc, 기준2 desc/asc
+
+### date_format()
+- date_format(대상, 형식)
+- 형식: 예) '%Y'
