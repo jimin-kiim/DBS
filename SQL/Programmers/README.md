@@ -41,3 +41,7 @@ round(대상, 자리수)
 
 ### union all
 - s/f/w union all s/f/w order by
+
+### in 
+- = or = or = 을 줄여 쓸 때 사용
+- 서브쿼리와 자주 씀
