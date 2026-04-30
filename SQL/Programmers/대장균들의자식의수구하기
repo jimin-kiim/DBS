@@ -1,0 +1,8 @@
+select parent.id, count(child.id) as child_count 
+from ecoli_data parent left join ecoli_data child on parent.id = child.parent_id
+group by parent.id 
+order by parent.id asc 
+-- 본인을 parent로 갖는 row의 개수 
+-- 1,2,3,4,5,6이 모두 반환돼야 하고 group by를 사용해서 갯수를 세야 한다 
+-- 1,2,3,4,5,6이 모두 반환돼야 하고 -> 부모가 되지 않는 노드도 모두 반환 (= 자식이 없는 노드도 모두 반환) -> left join 
+-- null은 안 세려면 count(*)가 아니라 count(child.id)
