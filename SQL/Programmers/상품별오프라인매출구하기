@@ -1,0 +1,5 @@
+SELECT product_code, sum(sales_amount) * price as sales
+from product join offline_sale using (product_id) 
+group by product_id
+order by sales desc, product_code asc 
+-- group by를 쓰면 select 절에서의 집계함수의 범위가 group 단위
