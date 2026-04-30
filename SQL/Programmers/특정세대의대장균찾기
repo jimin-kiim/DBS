@@ -1,0 +1,11 @@
+select third_generation.id 
+from 
+ecoli_data first_generation join ecoli_data second_generation 
+on first_generation.id = second_generation.parent_id
+
+join ecoli_data third_generation 
+on second_generation.id = third_generation.parent_id
+
+where first_generation.parent_id is null
+
+order by third_generation.id asc
