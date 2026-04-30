@@ -1,0 +1,5 @@
+SELECT outs.animal_id, outs.name
+from animal_ins ins right join animal_outs outs using (animal_id)
+where ins.datetime is null
+order by animal_id asc 
+-- 한 쪽엔 있는데 다른 한 쪽엔 없을 땐 right join이나 left join을 사용하여 null이 나오는 쪽을 찾는다. 이 문제에서는 animal_ins에 없는 animal_id를 찾는 것이므로 right join을 사용한다.
