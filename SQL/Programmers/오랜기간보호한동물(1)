@@ -1,0 +1,7 @@
+SELECT ins.name, ins.datetime
+from animal_ins ins left join animal_outs outs using (animal_id)
+where outs.animal_id is null
+order by ins.datetime asc 
+limit 3
+-- where outs.name is null로 했는데 name이 nullable이라 예상과 다른 결과물이 나옴 
+-- 더 확실하게 하기 위해서 outs.animal_id is null로 바꿔줌. animal_id는 nullable이 아니므로 null이 나오는 경우는 animal_ins에 없는 animal_id를 찾는 경우뿐이다.
