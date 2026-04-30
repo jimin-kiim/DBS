@@ -1,0 +1,5 @@
+SELECT outs.animal_id, outs.name 
+from animal_ins ins join animal_outs outs using (animal_id)
+where ins.datetime > outs.datetime
+order by ins.datetime asc 
+-- 시간은 최근일 수록, datetime 값이 크다다 누적 초가 더 많다고 생각하면 편하다
