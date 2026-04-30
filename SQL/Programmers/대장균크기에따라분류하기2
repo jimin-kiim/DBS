@@ -1,0 +1,8 @@
+select id, case ntile(4) over (order by size_of_colony desc) -- size_of_colony를 내림차순으로 정렬하여 4등분한 후, 각 등분에 따라 이름을 부여
+                when 1 then 'CRITICAL' -- 상위 25%는 CRITICAL
+                when 2 then 'HIGH' -- 상위 25%~50%는 HIGH
+                when 3 then 'MEDIUM' -- 상위 50%~75%는 MEDIUM
+                when 4 then 'LOW' -- 상위 75%~100%는 LOW
+                end as colony_name
+from ecoli_data 
+order by id asc 
