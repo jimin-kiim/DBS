@@ -48,3 +48,6 @@ round(대상, 자리수)
 
 ### 상위 n 개
 - order by + limit
+
+### 분기 처리
+- case when 조건 then 반환값 end
